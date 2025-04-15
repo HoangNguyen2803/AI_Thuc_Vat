@@ -2,8 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os
 import subprocess
 import pickle
-from flask import Flask, render_template
-
 import sys
 
 app = Flask(__name__)
@@ -14,7 +12,7 @@ with open('models/iris_model.pkl', 'rb') as file:
 
 # ====== TRANG CHỦ ======
 @app.route('/')
-def index():
+def home():  # ✅ Đặt tên là 'home' để tương thích với url_for('home')
     return render_template('index.html')
 
 # ====== DỰ ĐOÁN HOA ======
@@ -28,7 +26,6 @@ def predict():
         data = [[sepal_length, sepal_width, petal_length, petal_width]]
         prediction = model.predict(data)[0]
 
-        # Tìm tên tiếng Việt từ database.txt
         flower_name_vn = "Không tìm thấy"
         with open('database.txt', 'r', encoding='utf-8') as file:
             for line in file:
@@ -37,9 +34,15 @@ def predict():
                     flower_name_vn = parts[1]
                     break
 
-        return render_template('index.html', prediction=prediction, flower_name_vn=flower_name_vn)
+        return render_template('index.html',
+                               prediction=prediction,
+                               flower_name_vn=flower_name_vn,
+                               sepal_length=sepal_length,
+                               sepal_width=sepal_width,
+                               petal_length=petal_length,
+                               petal_width=petal_width)
     except Exception as e:
-        return f"Lỗi: {e}"
+        return render_template('index.html', error=str(e))
 
 # ====== DẠY AI ======
 @app.route('/dayAI', methods=['GET', 'POST'])
@@ -160,19 +163,14 @@ def xoa_cay():
 @app.route('/nangcapAI_cpp')
 def nangcapAI_cpp():
     path = 'nangcapAI/nangcap.cpp'
-    # Biên dịch C++
     try:
         subprocess.check_output(['g++', path, '-o', 'nangcapAI/nangcap.out'], stderr=subprocess.STDOUT)
-        # Chạy chương trình C++
         result = subprocess.check_output(['nangcapAI/nangcap.out'], stderr=subprocess.STDOUT)
         try:
-            # Thử decode với UTF-8
             result = result.decode('utf-8')
         except UnicodeDecodeError:
-            # Nếu không thành công, thử với ISO-8859-1
             result = result.decode('ISO-8859-1')
     except subprocess.CalledProcessError as e:
-        # Xử lý và in ra thông báo lỗi chi tiết
         try:
             error_message = e.output.decode('utf-8')
         except UnicodeDecodeError:
@@ -184,20 +182,15 @@ def nangcapAI_cpp():
 # ====== CHẠY JAVA ======
 @app.route('/nangcapAI_java')
 def nangcapAI_java():
-    path = 'nangcapAI/nangcap.'
-    # Biên dịch Java
+    path = 'nangcapAI/nangcap.java'
     try:
         subprocess.check_output(['javac', path], stderr=subprocess.STDOUT)
-        # Chạy chương trình Java
         result = subprocess.check_output(['java', '-cp', 'nangcapAI', 'nangcap'], stderr=subprocess.STDOUT)
         try:
-            # Thử decode với UTF-8
             result = result.decode('utf-8')
         except UnicodeDecodeError:
-            # Nếu không thành công, thử với ISO-8859-1
             result = result.decode('ISO-8859-1')
     except subprocess.CalledProcessError as e:
-        # Xử lý và in ra thông báo lỗi chi tiết
         try:
             error_message = e.output.decode('utf-8')
         except UnicodeDecodeError:
