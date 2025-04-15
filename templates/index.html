@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/hieuunghoa.css">
+<script src="/static/hoa.js"></script>
+
+    <link rel="icon" href="/static/download.jpg">
+    <title>Iris Classifier</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>AI Iris</h1>
+    <p>AI được người dùng huấn luyện, để coi về hoa + Có Bách Khoa Thực Vật Phong Phú!</p>
+    <p style="color: red;">Mọi thông tin trên đây có thể đúng hoặc sai!</p>
+    <form method="POST" action="/predict">
+        <input type="number" step="any" name="sepal_length" placeholder="Sepal Length" required>
+        <input type="number" step="any" name="sepal_width" placeholder="Sepal Width" required>
+        <input type="number" step="any" name="petal_length" placeholder="Petal Length" required>
+        <input type="number" step="any" name="petal_width" placeholder="Petal Width" required>
+        <button type="submit">Coi</button>
+    </form>
+
+    {% if prediction %}
+    <p>Dữ liệu bạn nhập:</p>
+    <ul>
+      <li>Sepal Length: {{ sepal_length }}</li>
+      <li>Sepal Width: {{ sepal_width }}</li>
+      <li>Petal Length: {{ petal_length }}</li>
+      <li>Petal Width: {{ petal_width }}</li>
+    </ul>
+    
+    {% endif %}
+    {% if error %}
+        <p style="color: red;">Lỗi: {{ error }}</p>
+    {% endif %}
+
+    <a href="/bachkhoavehoa">
+        <button>Khám phá Bách Khoa Về Hoa 🌼</button>
+        
+    </a>
+    
+    <a href="/dayAI">
+        <button type="button">🌱 Dạy AI loài hoa mới</button>
+      </a>
+      
+    <!-- index.html - thêm vào nơi thích hợp -->
+<a href="/danhsachdadayAI"><button>Xem danh sách đã dạy AI</button></a>
+
+<!-- Thêm vào đâu đó gần nút chính, ví dụ dưới form hoặc cuối trang -->
+<a href="/gioithieu" class="btn">🌼 Giới thiệu về HANA</a>
+
+<!-- Chèn vào nơi phù hợp trong index.html -->
+<a href="/gopy">
+    <button>📨 Góp ý cho HANA</button>
+</a>
+
+<!-- Thêm vào chỗ phù hợp, ví dụ dưới các nút khác -->
+<a href="/hienthigopy"><button>📄 Hiển thị góp ý</button></a>
+
+<a href="/bachkhoavecay" class="button">📚 Bách Khoa Cây Cổ Thụ</a>
+
+<!-- Thêm trong phần body hoặc menu chính -->
+<a href="/nangcapAI_java">
+    <button>🧠 Kiểm tra AI bằng Java</button>
+</a>
+
+<a href="/nangcapAI_cpp">
+    <button>🌳 Kiểm tra cây bằng C++</button>
+</a>
+
+</body>
+</html>

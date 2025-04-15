@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bách Khoa Về Hoa</title>
+  <link rel="stylesheet" href="/static/bachkhoavehoa.css">
+  <script src="/static/bachkhoavehoa.js"></script>
+</head>
+<body>
+  <h1>🌺 Bách Khoa Về Hoa</h1>
+  {% for flower in flower_data %}
+    <div>
+      <h3>{{ flower[0] }}</h3>
+      <ul>
+        <li>Sepal Length: {{ flower[1] }}</li>
+        <li>Sepal Width: {{ flower[2] }}</li>
+        <li>Petal Length: {{ flower[3] }}</li>
+        <li>Petal Width: {{ flower[4] }}</li>
+      </ul>
+      <hr>
+    </div>
+  {% endfor %}
+  <a href="{{ url_for('home') }}">🏠 Quay về Trang chủ</a>
+</body>
+</html>

@@ -1,0 +1,40 @@
+.flower {
+    position: fixed;
+    top: -50px;
+    width: 30px;
+    height: 30px;
+    background-image: url('https://i.imgur.com/8bPcv7u.png'); /* Ảnh hoa PNG nền trong suốt */
+    background-size: cover;
+    opacity: 0.8;
+    animation: fall linear infinite;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.3;
+    }
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 15px;
+    background-color: #7EC8E3;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #5AA9C8;
+    transform: scale(1.05);
+}

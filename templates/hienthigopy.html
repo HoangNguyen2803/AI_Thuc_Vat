@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Hiển thị Góp Ý</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .gopy-item {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+        }
+        .gopy-time {
+            font-size: 0.85em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>📬 Danh sách góp ý đã nhận</h1>
+
+    <div id="gopy-container">Đang tải góp ý...</div>
+    <a href="/">⬅️ Quay về Trang chủ</a>
+    <script>
+        fetch("/get_gopy")
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById("gopy-container");
+                container.innerHTML = "";
+
+                if (data.length === 0) {
+                    container.innerHTML = "<p>Không có góp ý nào.</p>";
+                } else {
+                    data.forEach((item, index) => {
+                        const div = document.createElement("div");
+                        div.className = "gopy-item";
+                        div.innerHTML = `
+                            <div><strong>Góp ý #${index + 1}</strong></div>
+                            <div>${item.text}</div>
+                            <div class="gopy-time">🕒 ${item.time}</div>
+                        `;
+                        container.appendChild(div);
+                    });
+                }
+            })
+            .catch(error => {
+                document.getElementById("gopy-container").innerHTML = "❌ Lỗi khi tải góp ý.";
+                console.error("Lỗi khi lấy góp ý:", error);
+            });
+    </script>
+
+</body>
+</html>

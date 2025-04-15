@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kết quả dự đoán</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f0f8ff;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 15px 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kết quả Dự đoán</h1>
+        <p><strong>Sepal Length:</strong> {{ sepal_length }}</p>
+        <p><strong>Sepal Width:</strong> {{ sepal_width }}</p>
+        <p><strong>Petal Length:</strong> {{ petal_length }}</p>
+        <p><strong>Petal Width:</strong> {{ petal_width }}</p>
+        <h2>Kết quả: {{ prediction }}</h2>
+
+        <a href="/" class="btn">Dự đoán lại</a>
+        <a href="/" class="btn">Quay về trang chủ</a>
+        <h3>🌼 Dự đoán từ dữ liệu người dùng:</h3>
+<p>{{ prediction_from_user }}</p>
+
+<h2>Kết quả dự đoán</h2>
+<p><strong>Mô hình gốc:</strong> {{ prediction }}</p>
+<p><strong>Từ dữ liệu bạn dạy:</strong> {{ prediction_from_user }}</p>
+
+
+    </div>
+</body>
+</html>

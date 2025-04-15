@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Dạy AI Nhận Diện Hoa</title>
+    <link rel="stylesheet" href="/static/dayAI.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dạy AI Nhận Diện Loài Hoa Mới</h1>
+        <form method="POST">
+            <input type="text" name="flower_name" placeholder="Tên loài hoa (nếu muốn dạy)">
+            <input type="number" step="any" name="feature1" placeholder="Sepal Length">
+            <input type="number" step="any" name="feature2" placeholder="Sepal Width">
+            <input type="number" step="any" name="feature3" placeholder="Petal Length">
+            <input type="number" step="any" name="feature4" placeholder="Petal Width">
+            <button type="submit">Dạy AI hoặc Dự đoán</button>
+        </form>
+        
+        <hr>
+<h2>Dự đoán loài hoa từ dữ liệu huấn luyện</h2>
+<form method="post">
+  <input type="hidden" name="action" value="predict">
+  <input type="number" step="0.01" name="feature1" placeholder="Sepal Length" required><br>
+  <input type="number" step="0.01" name="feature2" placeholder="Sepal Width" required><br>
+  <input type="number" step="0.01" name="feature3" placeholder="Petal Length" required><br>
+  <input type="number" step="0.01" name="feature4" placeholder="Petal Width" required><br>
+  <button type="submit">Dự đoán</button>
+</form>
+
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
+        
+        {% if prediction %}
+        <h3>Kết quả dự đoán: {{ prediction }}</h3>
+        {% endif %}
+
+        <br><a href="/">← Quay về trang chủ</a>
+    </div>
+    <script src="/static/dayAI.js"></script>
+</body>
+</html>

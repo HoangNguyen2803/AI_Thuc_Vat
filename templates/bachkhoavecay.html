@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bách Khoa Về Cây</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5fff4;
+      padding: 20px;
+    }
+    h1 {
+      color: #2e7d32;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 0 10px #ccc;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #81c784;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f1f8e9;
+    }
+    .btn {
+      padding: 8px 14px;
+      margin: 5px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-add { background-color: #4caf50; color: white; }
+    .btn-delete { background-color: #e53935; color: white; }
+    .btn-edit { background-color: #039be5; color: white; }
+    .btn-back { background-color: #8d6e63; color: white; float: right; }
+  </style>
+</head>
+<body>
+
+<h1>Bách Khoa Về Cây Cổ Thụ</h1>
+
+<table id="cayTable">
+  <thead>
+    <tr>
+      <th>Tên Cây</th>
+      <th>Đặc Điểm</th>
+      <th>Hành Động</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<br>
+<button class="btn btn-add" onclick="addRow()">➕ Thêm Cây</button>
+<button class="btn btn-back" onclick="window.location.href='/'">🏠 Trang Chủ</button>
+
+<script>
+  let data = [];
+
+  function fetchData() {
+    fetch('/get_cay')
+      .then(res => res.json())
+      .then(json => {
+        data = json;
+        renderTable();
+      });
+  }
+
+  function renderTable() {
+    const tbody = document.querySelector("#cayTable tbody");
+    tbody.innerHTML = "";
+    data.forEach((item, index) => {
+      const row = `
+        <tr>
+          <td>${item.name}</td>
+          <td>${item.detail}</td>
+          <td>
+            <button class="btn btn-edit" onclick="editRow(${index})">Sửa</button>
+            <button class="btn btn-delete" onclick="deleteRow(${index})">Xoá</button>
+          </td>
+        </tr>
+      `;
+      tbody.innerHTML += row;
+    });
+  }
+
+  function addRow() {
+    const name = prompt("Nhập tên cây:");
+    if (!name) return;
+    const detail = prompt("Nhập đặc điểm:");
+    if (!detail) return;
+    fetch('/add_cay', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({name, detail})
+    }).then(() => fetchData());
+  }
+
+  function editRow(index) {
+    const newName = prompt("Sửa tên cây:", data[index].name);
+    if (!newName) return;
+    const newDetail = prompt("Sửa đặc điểm:", data[index].detail);
+    if (!newDetail) return;
+    fetch('/edit_cay', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({index, name: newName, detail: newDetail})
+    }).then(() => fetchData());
+  }
+
+  function deleteRow(index) {
+    if (!confirm(`Bạn có chắc muốn xoá cây "${data[index].name}"?`)) return;
+    fetch('/delete_cay', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({index})
+    }).then(() => fetchData());
+  }
+
+  fetchData();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách đã dạy AI</title>
+    <script>
+        function confirmAction(action) {
+            if (action === 'delete') return confirm('Bạn có chắc chắn muốn xoá dữ liệu này không?');
+            if (action === 'save') return confirm('Bạn có chắc chắn muốn lưu thay đổi?');
+            if (action === 'add') return confirm('Bạn có chắc chắn muốn thêm dữ liệu này?');
+            return true;
+        }
+    </script>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f8f8f8; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        input { width: 100px; }
+        .message { margin-top: 10px; font-weight: bold; }
+        a { display: inline-block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>📘 Danh sách các loài hoa đã dạy AI</h2>
+
+    {% if message %}
+    <div class="message">{{ message }}</div>
+    {% endif %}
+
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Tên Hoa</th>
+            <th>Sepal Length</th>
+            <th>Sepal Width</th>
+            <th>Petal Length</th>
+            <th>Petal Width</th>
+            <th> Sua / Xoa </th>
+        </tr>
+
+        {% for row in data %}
+        <tr>
+            {% if edit_mode and edit_index == loop.index0 %}
+            <form method="post" onsubmit="return confirmAction('save')">
+                <td>{{ loop.index }}</td>
+                <td><input name="flower_name_edit" value="{{ row[0] }}"></td>
+                <td><input name="feature1_edit" value="{{ row[1] }}"></td>
+                <td><input name="feature2_edit" value="{{ row[2] }}"></td>
+                <td><input name="feature3_edit" value="{{ row[3] }}"></td>
+                <td><input name="feature4_edit" value="{{ row[4] }}"></td>
+                <td>
+                    <input type="hidden" name="index" value="{{ loop.index0 }}">
+                    <button name="action" value="save">💾 Lưu</button>
+                    <button name="action" value="cancel">❌ Hủy</button>
+                </td>
+            </form>
+            {% else %}
+            <form method="post" onsubmit="return true">
+                <td>{{ loop.index }}</td>
+                {% for col in row %}
+                <td>{{ col }}</td>
+                {% endfor %}
+                <td>
+                    <input type="hidden" name="index" value="{{ loop.index0 }}">
+                    <button name="action" value="edit">✏️ Sửa</button>
+                    <button name="action" value="delete" onclick="return confirmAction('delete')">🗑️ Xoá</button>
+                </td>
+            </form>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>➕ Thêm dữ liệu mới</h3>
+    <form method="post" onsubmit="return confirmAction('add')">
+        <input name="flower_name_new" placeholder="Tên hoa" required>
+        <input name="feature1_new" placeholder="Sepal Length" required>
+        <input name="feature2_new" placeholder="Sepal Width" required>
+        <input name="feature3_new" placeholder="Petal Length" required>
+        <input name="feature4_new" placeholder="Petal Width" required>
+        <button name="action" value="add">Thêm</button>
+    </form>
+
+    <a href="/">⬅️ Quay về Trang chủ</a>
+</body>
+</html>
