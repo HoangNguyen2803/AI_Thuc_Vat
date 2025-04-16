@@ -3,7 +3,7 @@
 Dự án ứng dụng trí tuệ nhân tạo để nhận diện và phân loại thực vật.
 
 ## Mục tiêu
-- Nhận diện cây cối, hoa, lá dựa trên ảnh
+- Nhận diện cây cối, hoa, lá dựa trên thông tin chữ.
 - Ứng dụng mô hình học sâu (deep learning)
 - Tích hợp vào app hoặc web
 
