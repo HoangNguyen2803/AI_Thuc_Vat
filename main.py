@@ -11,4 +11,3 @@ if __name__ == "__main__":
     prediction = model.predict(sample)
 
     print(f"Prediction for first sample: {prediction[0]}")
-

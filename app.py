@@ -4,6 +4,8 @@ import subprocess
 import pickle
 import sys
 
+from UI import ui_bp
+
 app = Flask(__name__)
 
 # Load mô hình AI
@@ -199,6 +201,8 @@ def nangcapAI_java():
     
     return render_template('run_output.html', result=result, language='Java')
 
+# ====== UI =====
+app.register_blueprint(ui_bp)          # thêm route /mandala và /mandala/progress
 # ====== CHẠY APP ======
 if __name__ == '__main__':
     app.run(debug=True)

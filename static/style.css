@@ -82,3 +82,22 @@ strong {
   background-color: #5AA9C8;
   transform: scale(1.05);
 }
+
+.menu-btn{
+  padding:10px 18px;
+  margin:6px;
+  border:none;
+  border-radius:6px;
+  background:#444;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  transition:transform .2s, box-shadow .2s;
+}
+.menu-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 10px rgba(0,0,0,.4);
+}
+.menu-btn.mandala{
+  background:linear-gradient(90deg,#d9337c,#77c97c);
+}

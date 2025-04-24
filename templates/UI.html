@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>HANA Mandala UI</title>
+  <link rel="stylesheet" href="/static/UI.css">
+</head>
+<body>
+  <div id="mandala">
+    <h1>Chào mừng đến với HANA Mandala UI</h1>
+    <a href="/gopy" class="sector cỏ" title="Cỏ - Góp ý"></a>
+    <a href="/bachkhoavecay" class="sector cây" title="Cây - Bách khoa cây"></a>
+    <a href="/dayAI" class="sector lá" title="Lá - Dạy AI"></a>
+    <a href="/bachkhoavehoa" class="sector hoa" title="Hoa - Bách khoa hoa"></a>
+    <svg id="sen" viewBox="0 0 200 200">
+      {% for i in range(8) %}
+      <path class="petal" d="M100 100 L100 20 A80 80 0 0 1 180 100 Z"
+            transform="rotate({{ 45*i }} 100 100)"/>
+      {% endfor %}
+  </svg>
+  </div>
+
+  
+
+
+  <script src="/static/UI.js"></script>
+</body>
+</html>

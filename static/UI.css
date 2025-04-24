@@ -1,0 +1,65 @@
+:root {
+        --hoa: #d9337c;
+        --cây: #2f4d2f;
+        --cỏ: #77c97c;
+        --lá: #228b8b;
+    }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #111;
+        color: #fff;
+        font-family: sans-serif;
+    }
+    #mandala {
+        position: absolute;
+        top: 60%; /* Điều chỉnh vị trí xuống dưới */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 260px;
+        height: 260px;
+    }
+    .sector {
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        clip-path: polygon(50% 50%, 100% 0, 100% 100%);
+        transform-origin: 50% 50%;
+        transition: transform .25s, filter .25s;
+    }
+  .cỏ{background:var(--cỏ); transform:rotate(45deg)   translate(0,-50%)}
+  .cây{background:var(--cây);transform:rotate(135deg) translate(0,-50%)}
+  .lá{background:var(--lá);  transform:rotate(225deg) translate(0,-50%)}
+  .hoa{background:var(--hoa);transform:rotate(315deg) translate(0,-50%)}
+  .sector:hover{transform:scale(1.08) rotate(var(--angle)) translate(0,-50%);
+                filter:drop-shadow(0 0 10px #fff)}
+  /* sen */
+  #mandala{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+       width:260px;height:260px}
+  .petal{fill:none;stroke:#666;stroke-width:4;opacity:.15;transition:opacity .6s,fill .6s}
+  .petal.open{fill:var(--hoa);opacity:1}
+  h1 {
+        text-align: center;
+        margin: 10px 10px 120px; /* Sử dụng shorthand cho margin */
+        padding: 20px;
+        line-height: 1.0;
+    }
+    #mandala {
+        position: absolute;
+        top: 60%; /* Điều chỉnh vị trí xuống dưới */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 260px;
+        height: 260px;
+    }
+    
+    .sector {
+        fill: none;
+        stroke: #666;
+        stroke-width: 4;
+        opacity: .15;
+        transition: opacity .6s, fill .6s;
+        border-radius: 100%; /* Bo tròn cánh hoa */
+    }
