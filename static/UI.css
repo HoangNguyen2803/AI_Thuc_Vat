@@ -29,17 +29,45 @@
         transform-origin: 50% 50%;
         transition: transform .25s, filter .25s;
     }
-  .cỏ{background:var(--cỏ); transform:rotate(45deg)   translate(0,-50%)}
-  .cây{background:var(--cây);transform:rotate(135deg) translate(0,-50%)}
-  .lá{background:var(--lá);  transform:rotate(225deg) translate(0,-50%)}
-  .hoa{background:var(--hoa);transform:rotate(315deg) translate(0,-50%)}
-  .sector:hover{transform:scale(1.08) rotate(var(--angle)) translate(0,-50%);
-                filter:drop-shadow(0 0 10px #fff)}
+  .cỏ{
+    background:var(--cỏ); 
+    transform:rotate(45deg)   
+    translate(0,-50%)
+}
+  .cây{
+    background:var(--cây);
+    transform:rotate(135deg) translate(0,-50%)
+}
+  .lá{
+    background:var(--lá);  
+    transform:rotate(225deg) translate(0,-50%)
+}
+  .hoa{
+    background:var(--hoa);
+    transform:rotate(315deg) translate(0,-50%)
+}
+  .sector:hover{
+    transform:scale(1.08) rotate(var(--angle)) translate(0,-50%);
+    filter:drop-shadow(0 0 10px #fff)
+            }
   /* sen */
-  #mandala{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-       width:260px;height:260px}
-  .petal{fill:none;stroke:#666;stroke-width:4;opacity:.15;transition:opacity .6s,fill .6s}
-  .petal.open{fill:var(--hoa);opacity:1}
+  #mandala{
+    position:absolute;top:50%;
+    left:50%;transform:translate(-50%,-50%);
+    width:260px;
+    height:260px
+    }
+  .petal{
+    fill:none;
+    stroke:#666;
+    stroke-width:4;
+    opacity:.15;
+    transition:opacity .6s,fill .6s
+}
+  .petal.open{
+    fill:var(--hoa);
+    opacity:1
+}
   h1 {
         text-align: center;
         margin: 10px 10px 120px; /* Sử dụng shorthand cho margin */
@@ -63,3 +91,61 @@
         transition: opacity .6s, fill .6s;
         border-radius: 100%; /* Bo tròn cánh hoa */
     }
+
+    @media (max-width: 600px) {
+        #mandala {
+            transform: translate(-50%, -40%);
+            width: 200px;
+            height: 200px;
+        }
+    
+        .sector {
+            width: 190px;
+            height: 190px;
+        }
+    
+        h1 {
+            font-size: 1.1em;
+            margin: 5px;
+        }
+    }
+    
+
+    #controls {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    #toggleMusic {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    
+    #tooltip {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.75);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-size: 0.8em;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        z-index: 1000;
+    }
+    #tooltip.hidden {
+        opacity: 0;
+        display: none;
+    }
+    
+    .petal.open {
+        animation: openPetal 1s ease-in forwards;
+    }
+    
+    @keyframes openPetal {
+        from { opacity: 0.15; fill: none; }
+        to { opacity: 1; fill: var(--hoa); }
+    }
+    

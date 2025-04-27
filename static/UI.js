@@ -2,8 +2,8 @@
 // --------------------------------------------------
 // 1. Hover sound (ngắn) + khởi động nhạc nền duy nhất
 // --------------------------------------------------
-const hoverSfx = '/static/hover.mp3';
-const bgMusic  = '/static/music/study-music-for-focus-and-brain-power-432-hz-172844.mp3';
+const hoverSfx = '/music/hover.mp3';
+const bgMusic  = '/music/study-music-for-focus-and-brain-power-432-hz-172844.mp3';
 
 let bgStarted = false;
 let bgAudio;
@@ -45,3 +45,17 @@ fetch('/mandala/progress')
     const n      = Math.round(pct / (100 / petals.length));
     petals.forEach((p, i) => { if (i < n) p.classList.add('open'); });
   });
+
+  // Điều khiển nhạc nền (toggle)
+document.getElementById('toggleMusic')?.addEventListener('click', () => {
+  if (!bgAudio) return;
+  if (bgAudio.paused) {
+    bgAudio.play();
+    document.getElementById('toggleMusic').textContent = '🔊';
+  } else {
+    bgAudio.pause();
+    document.getElementById('toggleMusic').textContent = '🔇';
+  }
+});
+
+import('/static/components/tooltip.js');

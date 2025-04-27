@@ -59,3 +59,40 @@ Tài liệu này ghi lại các thay đổi đáng chú ý trong quá trình ph�
 - Một số liên kết bị hỏng, không trỏ đến trang tương ứng.
 ### Tiến trình:
 - Đang tiếp tục cải tiến và khắc phục các vấn đề đã phát hiện.
+
+---
+
+## Phiên bản 0.4 (Phát hành: 2025-04-27)
+
+### Tính năng mới - Cải tiến:
+
+*Nâng cấp UI:*
+- Mandala UI nâng cấp toàn diện:
++ Thêm hiệu ứng cánh sen nở mượt theo tiến độ học.
++ Tooltip hiển thị sinh động khi hover các phần tử giao diện.
++ Responsive tốt hơn: hiển thị rõ ràng trên cả desktop và thiết bị di động.
+
+*Nhạc nền và âm thanh tương tác:*
+- Thêm nút bật/tắt nhạc với biểu tượng 🔊/🔇 dễ thao tác.
+- Cải tiến cơ chế phát nhạc để tương thích tốt hơn với trình duyệt hiện đại.
+
+### Tối ưu hóa:
+
+*Cấu trúc mã & tổ chức:*
+- Tách JavaScript thành module (tooltip.js) để dễ mở rộng và tái sử dụng.
+- Tối ưu mã UI.js: preload âm thanh, xử lý sự kiện tương tác tốt hơn.
+
+*Giao diện:*
+- Bổ sung footer đơn giản cuối trang.
+- Điều chỉnh vị trí Mandala để cân đối hơn với tiêu đề và layout tổng thể.
+- Áp dụng animation khi cánh hoa "mở" theo tiến độ học từ database.txt.
+
+### Phát hiện lỗi:
+
+- Âm thanh không phát trên một số trình duyệt nếu chưa có thao tác click đầu tiên.
+- Chưa có tính năng hiển thị hình ảnh thật của hoa và cây.
+- Giao diện Mandala HANA chưa hoàn chỉnh – thiếu hiệu ứng nền, mô tả loài hoa, chưa có hình minh họa.
+
+### Tiến trình:
+- Đang tiếp tục nâng cấp giao diện Mandala, tích hợp hình ảnh thực tế và hiệu ứng nâng cao.
+- Sẽ thêm chế độ tương tác phong phú hơn (vẽ cánh hoa, bật nhạc nền tuỳ chọn, hình ảnh động) trong tương lai.
